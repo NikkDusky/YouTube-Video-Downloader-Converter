@@ -10,7 +10,7 @@ video_URL = '' #URL видео всё просто
 
 #Опции для youtube_dl, тихий режим без вывода информации о скачивании.
 ydl_opts = {
-    'quiet': True #Если хотите видеть прогресс загрузки видео, поставьте здесь False
+    'quiet': False #Если хотите видеть прогресс загрузки видео, поставьте здесь False
 }
 
 
@@ -24,14 +24,14 @@ def video_URL_question(): #Форма ввода URL
 def download(video): #Функция для загрузки видео
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([video])
-        os.system("cls")
+        os.system('cls||clear')
         print("\n      Видео загружено")
 
 def get_info(video): #Функция для получения информации в глобальную переменную info
     global info
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(video, download=False)
-        os.system("cls")
+        os.system('cls||clear')
         print("\n\n\n      Видео найдено: " + info['title'])
         print("\n         В процессе загрузки...")
         print("\n")
@@ -47,10 +47,10 @@ def question(): #Функция для выбора последующих де�
     print(f"         d - Перекодировать видео {info['title']} в wav, mp3")
     print("         q - Выйти")
     cont_question = input("\n      Твой выбор: ")
-    os.system("cls")
+    os.system('cls||clear')
     
 def convert_it(file_name): #Функция для кодирования в другой формат, используем библиотеку ffmpeg, которая распологается по пути bin\ffmpeg
-    os.system("cls")
+    os.system('cls||clear')
     print("\n      Во что перекодировать видео?")
     print("\n         1 - 340 kbps/mp3/Mono")
     print("         2 - 340 kbps/mp3/Stereo")
@@ -60,20 +60,20 @@ def convert_it(file_name): #Функция для кодирования в др
     
     #Ифы для выбора варианта кодирования
     if audio_quality_choice == "1":
-        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -ac 1 -b:a 340k -f mp3 {file_name}.mp3")
+        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -ac 1 -b:a 340k -f mp3 {file_name[:-5]}.mp3")
     elif audio_quality_choice == "2":
-        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -b:a 340k -f mp3 {file_name}.mp3")
+        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -b:a 340k -f mp3 {file_name[:-5]}.mp3")
     elif audio_quality_choice == "3":
-        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -ac 1 -f wav {file_name}.wav")
+        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -ac 1 -f wav {file_name[:-5]}.wav")
     else:
-        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -f wav {file_name}.wav")
+        os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -f wav {file_name[:-5]}.wav")
 
-    os.system("cls")
-    print(f"\n      Готово!\n      {file_name}\n      Успешно перекодирован и лежит рядом со скриптом!")
+    os.system('cls||clear')
+    print(f"\n      Готово!\n      {file_name[:-3]}\n      Успешно перекодирован и лежит рядом со скриптом!")
 
 while True: #Бесконечный цикл
     
-    os.system("cls")
+    os.system('cls||clear')
     question() #Вызов функции выбора последующих действий
 
     #Вызов функций в зависимости от выбора
