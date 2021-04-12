@@ -69,7 +69,7 @@ def convert_it(file_name): #Функция для кодирования в др
         os.system(f"bin\\ffmpeg -i {file_name} -vn -ar 44100 -f wav {file_name[:-5]}.wav")
 
     os.system('cls||clear')
-    print(f"\n      Готово!\n      {file_name[:-3]}\n      Успешно перекодирован и лежит рядом со скриптом!")
+    print(f"\n      Готово!\n      {file_name[:-5]}\n      Успешно перекодирован и лежит рядом со скриптом!")
 
 while True: #Бесконечный цикл
     
